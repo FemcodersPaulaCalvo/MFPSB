@@ -1,6 +1,7 @@
 package com.MyFirstProjectSpringBoot.MFPSB.entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "category")
