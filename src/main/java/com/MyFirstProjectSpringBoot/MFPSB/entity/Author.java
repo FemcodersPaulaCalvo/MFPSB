@@ -2,6 +2,8 @@ package com.MyFirstProjectSpringBoot.MFPSB.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table
@@ -11,9 +13,10 @@ public class Author {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany
-    @JoinColumn
     private String name;
+
+    @OneToMany(mappedBy = "author")
+    private List<Phrase> phrases;
 
     public Author() {
     }
