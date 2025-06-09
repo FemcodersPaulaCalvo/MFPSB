@@ -25,6 +25,11 @@ public class Author {
         this.name = name;
     }
 
+    public Author(String name, List<Phrase> phrases) {
+        this.name = name;
+        this.phrases = phrases;
+    }
+
     public Long getId() {
         return id;
     }
@@ -35,5 +40,13 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Phrase> getPhrases() {
+        return phrases;
+    }
+
+    public void setPhrases(List<Phrase> phrases) {
+        this.phrases = phrases;
     }
 }
