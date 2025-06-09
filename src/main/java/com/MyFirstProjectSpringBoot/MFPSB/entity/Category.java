@@ -2,6 +2,8 @@ package com.MyFirstProjectSpringBoot.MFPSB.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="Categories")
 public class Category {
@@ -12,11 +14,19 @@ public class Category {
 
     private String name;
 
+    @OneToMany(mappedBy = "category")
+    private List<Phrase> phrases;
+
     public Category() {
     }
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(String name, List<Phrase> phrases) {
+        this.name = name;
+        this.phrases = phrases;
     }
 
     public Long getId() {
@@ -29,5 +39,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Phrase> getPhrases() {
+        return phrases;
+    }
+
+    public void setPhrases(List<Phrase> phrases) {
+        this.phrases = phrases;
     }
 }
