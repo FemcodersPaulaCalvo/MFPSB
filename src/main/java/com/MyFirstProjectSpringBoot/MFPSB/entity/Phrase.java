@@ -1,6 +1,7 @@
 package com.MyFirstProjectSpringBoot.MFPSB.entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Table(name="Phrases")
@@ -11,12 +12,15 @@ public class Phrase {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotNull
     private String text;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name="author_id")
     private Author author;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
