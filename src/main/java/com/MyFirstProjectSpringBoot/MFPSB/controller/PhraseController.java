@@ -23,7 +23,7 @@ public class PhraseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ResponsePhraseDto>> getCardList(){
+    public ResponseEntity<List<ResponsePhraseDto>> getAllPhrasesList(){
         List<ResponsePhraseDto> phrases = PHRASE_SERVICE.findAllPhrases();
         return new ResponseEntity<>(phrases, HttpStatus.OK);
     }
