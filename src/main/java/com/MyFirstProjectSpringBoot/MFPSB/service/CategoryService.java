@@ -4,9 +4,11 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CategoryService {
 
     private final CategoryRepository CATEGORY_REPOSITORY;
