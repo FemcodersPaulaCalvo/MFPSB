@@ -22,7 +22,7 @@ public class AuthorService {
         Author newAuthor = authorDto.toEntity();
         Optional<Author> isExisting = AUTHOR_REPOSITORY.findByName(newAuthor.getName());
         if (!isExisting.isEmpty()){
-            throw new RuntimeException("This author alredy exist");
+            throw new RuntimeException("This author already exist");
         }
         Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
         return ResponseAuthorDto.fromEntity(savedAuthor);
