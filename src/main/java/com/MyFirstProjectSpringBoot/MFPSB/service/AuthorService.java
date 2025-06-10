@@ -1,8 +1,12 @@
 package com.MyFirstProjectSpringBoot.MFPSB.service;
 
+import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
+import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -14,7 +18,14 @@ public class AuthorService {
     }
 
     //  SAVE AN AUTHOR
-    public Author saveAuthor(){
+    public ResponseAuthorDto saveAuthor(RequestAuthorDto authorDto){
+        Author newAuthor = authorDto.toEntity();
+        Optional<Author> isExisting = AUTHOR_REPOSITORY.findByName(newAuthor.getName());
+        if (!isExisting.isEmpty()){
+            throw new RuntimeException("This author alredy exist");
+        }
+        Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
+        return ResponseAuthorDto.fromEntity(savedAuthor);
 
     }
 }
