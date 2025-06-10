@@ -48,7 +48,7 @@ public class PhraseService {
         Phrase newPhrase = requestPhraseDto.toEntity();
 
         Author authorNewPhrase = newPhrase.getAuthor();
-        RequestAuthorDto authorDto = new RequestAuthorDto(authorNewPhrase.getName());
+        RequestAuthorDto authorDto = new RequestAuthorDto(newPhrase.getAuthor().getName());
         ResponseAuthorDto isExistingAuthor = AUTHOR_SERVICE.findByName(authorDto);
         authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
         newPhrase.setAuthor(authorNewPhrase);
