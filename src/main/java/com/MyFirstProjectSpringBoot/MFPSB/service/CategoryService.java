@@ -1,7 +1,9 @@
 package com.MyFirstProjectSpringBoot.MFPSB.service;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestCategoryDto;
+import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
+import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,16 @@ public class CategoryService {
         }
         Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
         return ResponseCategoryDto.fromEntity(savedCategory);
+    }
+
+    //  FIND BY NAME
+    public ResponseCategoryDto findByName(RequestCategoryDto requestCategoryDto){
+        Category newCategory = requestCategoryDto.toEntity();
+        Optional<Category> isExisting = CATEGORY_REPOSITORY.findByName(newCategory.getName());
+        if (isExisting.isEmpty()){
+            Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
+            return ResponseCategoryDto.fromEntity(savedCategory);
+        }
+        return ResponseCategoryDto.fromEntity(newCategory);
     }
 }
