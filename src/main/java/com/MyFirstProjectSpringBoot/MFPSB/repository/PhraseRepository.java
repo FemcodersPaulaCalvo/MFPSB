@@ -21,6 +21,8 @@ public interface PhraseRepository extends JpaRepository<Phrase, Long> {
 
     Optional<Phrase> findById(Long id);
 
+    Optional<Phrase> findByText(String text);
+
     List<Phrase> findByAuthor_Name(String name);
 
     List<Phrase> findByCategory_Name(String name);
