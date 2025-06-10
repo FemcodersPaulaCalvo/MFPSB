@@ -53,7 +53,6 @@ public class PhraseService {
         authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
         newPhrase.setAuthor(authorNewPhrase);
 
-
         Phrase savedPhrase = PHRASE_REPOSITORY.save(newPhrase);
         return ResponsePhraseDto.fromEntity(savedPhrase);
     }
