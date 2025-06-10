@@ -32,10 +32,10 @@ public class AuthorService {
     public ResponseAuthorDto findByName(RequestAuthorDto requestAuthorDto){
         Author newAuthor = requestAuthorDto.toEntity();
         Optional<Author> isExisting = AUTHOR_REPOSITORY.findByName(newAuthor.getName());
-        if (isExisting.isEmpty()){
-            Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
-            return ResponseAuthorDto.fromEntity(savedAuthor);
+        if (isExisting.isPresent()){
+            return ResponseAuthorDto.fromEntity(isExisting.get());
         }
-        return ResponseAuthorDto.fromEntity(newAuthor);
+        Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
+        return ResponseAuthorDto.fromEntity(savedAuthor);
     }
 }
