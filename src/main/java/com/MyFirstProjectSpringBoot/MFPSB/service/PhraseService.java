@@ -1,10 +1,8 @@
 package com.MyFirstProjectSpringBoot.MFPSB.service;
 
-import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
-import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestPhraseDto;
-import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
-import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponsePhraseDto;
+import com.MyFirstProjectSpringBoot.MFPSB.dto.*;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
+import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Phrase;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.PhraseRepository;
 import org.springframework.stereotype.Service;
@@ -47,11 +45,15 @@ public class PhraseService {
 
         Phrase newPhrase = requestPhraseDto.toEntity();
 
-        Author authorNewPhrase = newPhrase.getAuthor();
         RequestAuthorDto authorDto = new RequestAuthorDto(newPhrase.getAuthor().getName());
         ResponseAuthorDto isExistingAuthor = AUTHOR_SERVICE.findByName(authorDto);
-        authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
+        Author authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
         newPhrase.setAuthor(authorNewPhrase);
+
+        RequestCategoryDto categoryDto = new RequestCategoryDto(newPhrase.getCategory().getName());
+        ResponseCategoryDto isExistingCategory = CATEGORY_SERVICE.findByName(categoryDto);
+        Category categoryNewPhrase = new Category(isExistingCategory.id(), isExistingCategory.name());
+        newPhrase.setCategory(categoryNewPhrase);
 
         Phrase savedPhrase = PHRASE_REPOSITORY.save(newPhrase);
         return ResponsePhraseDto.fromEntity(savedPhrase);
