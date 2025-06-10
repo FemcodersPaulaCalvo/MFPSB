@@ -26,6 +26,16 @@ public class AuthorService {
         }
         Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
         return ResponseAuthorDto.fromEntity(savedAuthor);
+    }
 
+    //  FIND BY NAME
+    public ResponseAuthorDto findByName(RequestAuthorDto requestAuthorDto){
+        Author newAuthor = requestAuthorDto.toEntity();
+        Optional<Author> isExisting = AUTHOR_REPOSITORY.findByName(newAuthor.getName());
+        if (isExisting.isEmpty()){
+            Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
+            return ResponseAuthorDto.fromEntity(savedAuthor);
+        }
+        return ResponseAuthorDto.fromEntity(newAuthor);
     }
 }
