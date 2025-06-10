@@ -34,10 +34,10 @@ public class CategoryService {
     public ResponseCategoryDto findByName(RequestCategoryDto requestCategoryDto){
         Category newCategory = requestCategoryDto.toEntity();
         Optional<Category> isExisting = CATEGORY_REPOSITORY.findByName(newCategory.getName());
-        if (isExisting.isEmpty()){
-            Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
-            return ResponseCategoryDto.fromEntity(savedCategory);
+        if (isExisting.isPresent()){
+            return ResponseCategoryDto.fromEntity(newCategory);
         }
-        return ResponseCategoryDto.fromEntity(newCategory);
+        Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
+        return ResponseCategoryDto.fromEntity(savedCategory);
     }
 }
