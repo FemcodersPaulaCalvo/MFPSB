@@ -35,7 +35,7 @@ public class CategoryService {
         Category newCategory = requestCategoryDto.toEntity();
         Optional<Category> isExisting = CATEGORY_REPOSITORY.findByName(newCategory.getName());
         if (isExisting.isPresent()){
-            return ResponseCategoryDto.fromEntity(newCategory);
+            return ResponseCategoryDto.fromEntity(isExisting.get());
         }
         Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
         return ResponseCategoryDto.fromEntity(savedCategory);
