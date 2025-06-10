@@ -1,10 +1,11 @@
 package com.MyFirstProjectSpringBoot.MFPSB.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
-@Table(name="Phrases")
+@Table(name="phrases")
 public class Phrase {
 
     @Id
@@ -18,11 +19,13 @@ public class Phrase {
     @NotNull
     @ManyToOne
     @JoinColumn(name="author_id")
+    @JsonIgnoreProperties("phrases")
     private Author author;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name="category_id")
+    @JsonIgnoreProperties("phrases")
     private Category category;
 
     public Phrase() {
