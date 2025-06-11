@@ -111,10 +111,22 @@ public class PhraseService {
     public List<ResponsePhraseDto> findPhrasesByAuthorName(RequestAuthorDto requestAuthorDto){
         List<Phrase> isExistingPhrasesByAuthor = PHRASE_REPOSITORY.findByAuthor_Name(requestAuthorDto.name());
         if (isExistingPhrasesByAuthor.isEmpty()){
-            throw new RuntimeException("This author not have phrases");
+            throw new EmptyListException();
         }
         return isExistingPhrasesByAuthor.stream()
                 .map(ResponsePhraseDto::fromEntity)
-                .toList();    }
+                .toList();
+    }
+
+    //  FIND PHRASES BY CATEGORY
+    public List<ResponsePhraseDto> findPhrasesByCategoryName(RequestCategoryDto requestCategoryDto){
+        List<Phrase> isExistingPhrasesByCategory = PHRASE_REPOSITORY.findByCategory_Name(requestCategoryDto.name());
+        if (isExistingPhrasesByCategory.isEmpty()){
+            throw new EmptyListException();
+        }
+        return isExistingPhrasesByCategory.stream()
+                .map(ResponsePhraseDto::fromEntity)
+                .toList();
+    }
 
 }
