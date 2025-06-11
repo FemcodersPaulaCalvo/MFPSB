@@ -59,4 +59,27 @@ public class PhraseService {
         return ResponsePhraseDto.fromEntity(savedPhrase);
     }
 
+    //  UPDATE PHRASE
+    public ResponsePhraseDto updatePhrase(RequestPhraseDto requestPhraseDto){
+        Phrase isExisstingPhrase = PHRASE_REPOSITORY.findByText(requestPhraseDto.text())
+                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+
+        isExisstingPhrase.setText(requestPhraseDto.text());
+
+        RequestAuthorDto authorDto = new RequestAuthorDto(isExisstingPhrase.getAuthor().getName());
+        ResponseAuthorDto isExistingAuthor = AUTHOR_SERVICE.findByName(authorDto);
+        Author authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
+        isExisstingPhrase.setAuthor(requestPhraseDto.toEntity().getAuthor());
+
+        RequestCategoryDto categoryDto = new RequestCategoryDto(isExisstingPhrase.getCategory().getName());
+        ResponseCategoryDto isExistingCategory = CATEGORY_SERVICE.findByName(categoryDto);
+        Category categoryNewPhrase = new Category(isExistingCategory.id(), isExistingCategory.name());
+        isExisstingPhrase.setCategory(categoryNewPhrase);
+        isExisstingPhrase.setCategory(requestPhraseDto.toEntity().getCategory());
+
+        Phrase updatedPhrase = PHRASE_REPOSITORY.save(isExisstingPhrase);
+
+        return ResponsePhraseDto.fromEntity(updatedPhrase);
+    }
+
 }
