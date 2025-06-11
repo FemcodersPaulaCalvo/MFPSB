@@ -36,6 +36,14 @@ public class PhraseService {
                 .toList();
     }
 
+    //  GET PHRASE BY ID
+    public ResponsePhraseDto findPhraseById(Long id){
+        Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
+                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+
+        return ResponsePhraseDto.fromEntity(isExisstingPhrase);
+    }
+
     //  POST NEW PHRASE
     public ResponsePhraseDto createPhrase(RequestPhraseDto requestPhraseDto){
         Optional<Phrase> isExisting = PHRASE_REPOSITORY.findByText(requestPhraseDto.text());
