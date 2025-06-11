@@ -4,6 +4,7 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.AuthorRepository;
 import com.MyFirstProjectSpringBoot.MFPSB.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseAuthorDto> postNewAuthor(@RequestBody RequestAuthorDto requestAuthorDto){
+    public ResponseEntity<ResponseAuthorDto> postNewAuthor(@Valid @RequestBody RequestAuthorDto requestAuthorDto){
         ResponseAuthorDto newAuthor = AUTHOR_SERVICE.saveAuthor(requestAuthorDto);
         return new ResponseEntity<>(newAuthor, HttpStatus.OK);
     }
