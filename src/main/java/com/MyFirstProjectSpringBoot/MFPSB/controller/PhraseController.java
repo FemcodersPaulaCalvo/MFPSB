@@ -2,7 +2,6 @@ package com.MyFirstProjectSpringBoot.MFPSB.controller;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestPhraseDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponsePhraseDto;
-import com.MyFirstProjectSpringBoot.MFPSB.repository.PhraseRepository;
 import com.MyFirstProjectSpringBoot.MFPSB.service.PhraseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +31,9 @@ public class PhraseController {
         return new ResponseEntity<>(newPhrase, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<ResponsePhraseDto> putGuardian(@RequestBody RequestPhraseDto requestPhraseDto){
-        ResponsePhraseDto updatePhrase = PHRASE_SERVICE.updatePhrase(requestPhraseDto);
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponsePhraseDto> putPhrase(@PathVariable Long id, @RequestBody RequestPhraseDto requestPhraseDto){
+        ResponsePhraseDto updatePhrase = PHRASE_SERVICE.updatePhrase(id, requestPhraseDto);
         return new ResponseEntity<>(updatePhrase, HttpStatus.OK);
     }
 }
