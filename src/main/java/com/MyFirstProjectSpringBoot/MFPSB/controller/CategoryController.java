@@ -5,6 +5,7 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.CategoryRepository;
 import com.MyFirstProjectSpringBoot.MFPSB.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseCategoryDto> postNewCategory (@RequestBody RequestCategoryDto requestCategoryDto){
+    public ResponseEntity<ResponseCategoryDto> postNewCategory (@Valid @RequestBody RequestCategoryDto requestCategoryDto){
         ResponseCategoryDto newCategory = CATEGORY_SERVICE.saveCategory(requestCategoryDto);
         return new ResponseEntity<>(newCategory, HttpStatus.OK);
     }
