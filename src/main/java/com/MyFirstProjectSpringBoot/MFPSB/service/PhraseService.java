@@ -107,4 +107,14 @@ public class PhraseService {
         PHRASE_REPOSITORY.deleteById(id);
     }
 
+    //  FIND PHRASES BY AUTHOR
+    public List<ResponsePhraseDto> findPhrasesByAuthorName(RequestAuthorDto requestAuthorDto){
+        List<Phrase> isExistingPhrasesByAuthor = PHRASE_REPOSITORY.findByAuthor_Name(requestAuthorDto.name());
+        if (isExistingPhrasesByAuthor.isEmpty()){
+            throw new RuntimeException("This author not have phrases");
+        }
+        return isExistingPhrasesByAuthor.stream()
+                .map(ResponsePhraseDto::fromEntity)
+                .toList();    }
+
 }
