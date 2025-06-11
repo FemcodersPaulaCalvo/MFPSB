@@ -31,4 +31,10 @@ public class PhraseController {
         ResponsePhraseDto newPhrase = PHRASE_SERVICE.createPhrase(requestPhraseDto);
         return new ResponseEntity<>(newPhrase, HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity<ResponsePhraseDto> putGuardian(@RequestBody RequestPhraseDto requestPhraseDto){
+        ResponsePhraseDto updatePhrase = PHRASE_SERVICE.updatePhrase(requestPhraseDto);
+        return new ResponseEntity<>(updatePhrase, HttpStatus.OK);
+    }
 }
