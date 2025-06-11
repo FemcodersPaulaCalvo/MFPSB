@@ -111,7 +111,7 @@ public class PhraseService {
     public List<ResponsePhraseDto> findPhrasesByAuthorName(RequestAuthorDto requestAuthorDto){
         List<Phrase> isExistingPhrasesByAuthor = PHRASE_REPOSITORY.findByAuthor_Name(requestAuthorDto.name());
         if (isExistingPhrasesByAuthor.isEmpty()){
-            throw new RuntimeException("This author not have phrases");
+            throw new EmptyListException();
         }
         return isExistingPhrasesByAuthor.stream()
                 .map(ResponsePhraseDto::fromEntity)
