@@ -3,6 +3,7 @@ package com.MyFirstProjectSpringBoot.MFPSB.service;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.AuthorIsExistingException;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class AuthorService {
         Author newAuthor = authorDto.toEntity();
         Optional<Author> isExisting = AUTHOR_REPOSITORY.findByName(newAuthor.getName());
         if (!isExisting.isEmpty()){
-            throw new RuntimeException("This author already exist");
+            throw new AuthorIsExistingException(newAuthor.getName());
         }
         Author savedAuthor = AUTHOR_REPOSITORY.save(newAuthor);
         return ResponseAuthorDto.fromEntity(savedAuthor);
