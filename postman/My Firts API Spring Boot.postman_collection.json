@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "dd21e98a-9a00-4521-899c-dd0d0d2aee81",
+		"name": "My Firts API Spring Boot",
+		"description": "# 📘 Documentación de la API - \\[MFPSB\\]\n\n## 🧾 Descripción general\n\n**Nombre del proyecto**: My fist project Spring Boot  \n**Descripción**:  \n**Tecnologías**: Java 21, Spring Boot, JPA, MySQL  \n**Autor**: Paula Calvo Garcia  \n**Fecha**: 10.06.2025\n\n---\n\n## 🚀 Cómo ejecutar el proyecto\n\n``` bash\n# Clonar el repositorio\ngit clone https://github.com/FemcodersPaulaCalvo/MFPSB.git\n# Entrar en el proyecto\ncd MFPSB\n# Ejecutar con Maven\n./mvnw spring-boot:run\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39117909"
+	},
+	"item": [
+		{
+			"name": "PHRASE",
+			"item": [
+				{
+					"name": "GetAllPhrasesList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phrases",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phrases"
+							]
+						},
+						"description": "This is a GET request used to retrieve all the phrases from the MySQL database. There is no request body for a GET request.  \nA successful GET response will have a `200 OK` status and must include some type of response body, for example, HTML web content or JSON data.  \nResponse: List of phrases with ID, name, author name, and category name.\n\n``` json\n[\n  {\n    \"id\": 1,\n    \"name\": \"Example\",\n    \"author\": \"Sample text\"\n    \"category\": \"Sample text\"\n  },\n    {\n    \"id\": 2,\n    \"name\": \"Example 2\",\n    \"author\": \"Sample text 2\"\n    \"category\": \"Sample text 2\"\n  }\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phrases/51",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phrases",
+								"51"
+							]
+						},
+						"description": "This is a GET request by `ID` used to retrieve a phrase corresponding to that ID from the MySQL database. There is no request body for a GET request.  \nA successful GET response will have a `200 OK` status and must include some type of response body, for example, HTML web content or JSON data.\n\n  \nResponse: A phrase with an ID, name, author name, and category name.\n\n``` json\n[\n  {\n    \"id\": 1,\n    \"name\": \"Example\",\n    \"author\": \"Sample text\"\n    \"category\": \"Sample text\"\n  }\n\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Phrase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"text\": \"prueba25\",\r\n        \"author\": \"Ralph Wiggum\",\r\n        \"category\": \"Los Simpson\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/phrases",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phrases"
+							]
+						},
+						"description": "This is a POST request used to add a phrase to the MySQL database. The POST request does include a request body.  \nA successful POST response will have a `200 OK` status and must include some type of response body, for example, HTML web content or JSON data.\n\nResponse: A phrase with an id, name, author name, and category name.\n\n``` json\n[\n  {\n    \"id\": 1,\n    \"name\": \"Example\",\n    \"author\": \"Sample text\"\n    \"category\": \"Sample text\"\n  }\n﻿\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Put phrase",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"text\": \"prueba16put\",\r\n        \"author\": \"Bart Simpson\",\r\n        \"category\": \"Fox\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/phrases/51",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phrases",
+								"51"
+							]
+						},
+						"description": "This is a PUT request used to update a phrase in the MySQL database using an `ID`. The PUT request does include a request body.  \nA successful PUT response will have a `200 OK` status and should include some type of response body, for example, HTML web content or JSON data.\n\nResponse: A phrase with an ID, name, author name, and category name.\n\n``` json\n{\n        \"text\": \"prueba11\",\n        \"author\": \"Ralph Wiggum\",\n        \"category\": \"Los Simpson\"\n    }\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/phrases/44",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"phrases",
+								"44"
+							]
+						},
+						"description": "This is a DELETE request used to delete a phrase in the MySQL database using an `ID`. There is no request body in a DELETE request.  \nA successful DELETE response will have a `200 OK` status and must include some type of response body, for example, HTML web content or JSON data.\n\n  \nResponse: \"Phrase has been deleted\""
+					},
+					"response": []
+				}
+			],
+			"description": "Here are the main methods of the app"
+		},
+		{
+			"name": "AUTHOR",
+			"item": [
+				{
+					"name": "Post Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"autor test 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/authors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"authors"
+							]
+						},
+						"description": "This is a POST request used to add an author to the MySQL database. The POST request does include a request body..\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			],
+			"description": "Here are the application's secondary methods, necessary for the correct functioning of data processing."
+		},
+		{
+			"name": "CATEGORY",
+			"item": [
+				{
+					"name": "Post Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Prueba test 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						},
+						"description": "This is a POST request used to add a category to the MySQL database. The POST request does include a request body.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			],
+			"description": "Here are the application's secondary methods, necessary for the correct functioning of data processing."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
