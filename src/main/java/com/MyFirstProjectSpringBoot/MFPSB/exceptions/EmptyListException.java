@@ -1,0 +1,7 @@
+package com.MyFirstProjectSpringBoot.MFPSB.exceptions;
+
+public class EmptyListException extends AppException {
+    public EmptyListException() {
+        super("The list is empty.");
+    }
+}
