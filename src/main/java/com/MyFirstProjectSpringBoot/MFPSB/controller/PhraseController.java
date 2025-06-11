@@ -25,6 +25,12 @@ public class PhraseController {
         return new ResponseEntity<>(phrases, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponsePhraseDto> getPhraseById(@PathVariable Long id){
+        ResponsePhraseDto phrase = PHRASE_SERVICE.findPhraseById(id);
+        return new ResponseEntity<>(phrase, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ResponsePhraseDto> postNewPhrase(@RequestBody RequestPhraseDto requestPhraseDto){
         ResponsePhraseDto newPhrase = PHRASE_SERVICE.createPhrase(requestPhraseDto);
