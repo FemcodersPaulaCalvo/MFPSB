@@ -60,8 +60,8 @@ public class PhraseService {
     }
 
     //  UPDATE PHRASE
-    public ResponsePhraseDto updatePhrase(RequestPhraseDto requestPhraseDto){
-        Phrase isExisstingPhrase = PHRASE_REPOSITORY.findByText(requestPhraseDto.text())
+    public ResponsePhraseDto updatePhrase(Long id, RequestPhraseDto requestPhraseDto){
+        Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
                 .orElseThrow(() -> new RuntimeException("This phrase not exist"));
 
         isExisstingPhrase.setText(requestPhraseDto.text());
