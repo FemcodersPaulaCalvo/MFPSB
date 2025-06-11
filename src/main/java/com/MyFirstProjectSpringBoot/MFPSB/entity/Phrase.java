@@ -16,15 +16,13 @@ public class Phrase {
     @NotNull
     private String text;
 
-    @NotNull
     @ManyToOne
-    @JoinColumn(name="author_id")
+    @JoinColumn(name="author_id", nullable = false)
     @JsonIgnoreProperties("phrases")
     private Author author;
 
-    @NotNull
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name="category_id", nullable = false)
     @JsonIgnoreProperties("phrases")
     private Category category;
 
