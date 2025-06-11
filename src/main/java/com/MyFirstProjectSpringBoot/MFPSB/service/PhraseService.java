@@ -66,16 +66,18 @@ public class PhraseService {
 
         isExisstingPhrase.setText(requestPhraseDto.text());
 
-        RequestAuthorDto authorDto = new RequestAuthorDto(isExisstingPhrase.getAuthor().getName());
+        Phrase newPhrase = requestPhraseDto.toEntity();
+
+        RequestAuthorDto authorDto = new RequestAuthorDto(newPhrase.getAuthor().getName());
         ResponseAuthorDto isExistingAuthor = AUTHOR_SERVICE.findByName(authorDto);
         Author authorNewPhrase = new Author(isExistingAuthor.id(), isExistingAuthor.name());
-        isExisstingPhrase.setAuthor(requestPhraseDto.toEntity().getAuthor());
+        isExisstingPhrase.setAuthor(authorNewPhrase);
 
-        RequestCategoryDto categoryDto = new RequestCategoryDto(isExisstingPhrase.getCategory().getName());
+        RequestCategoryDto categoryDto = new RequestCategoryDto(newPhrase.getCategory().getName());
         ResponseCategoryDto isExistingCategory = CATEGORY_SERVICE.findByName(categoryDto);
         Category categoryNewPhrase = new Category(isExistingCategory.id(), isExistingCategory.name());
         isExisstingPhrase.setCategory(categoryNewPhrase);
-        isExisstingPhrase.setCategory(requestPhraseDto.toEntity().getCategory());
+
 
         Phrase updatedPhrase = PHRASE_REPOSITORY.save(isExisstingPhrase);
 
