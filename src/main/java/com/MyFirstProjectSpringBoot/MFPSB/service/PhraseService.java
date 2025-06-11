@@ -84,4 +84,12 @@ public class PhraseService {
         return ResponsePhraseDto.fromEntity(updatedPhrase);
     }
 
+    //  DELETE PHRASE
+    public void deletePhraseById(Long id){
+        Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
+                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+
+        PHRASE_REPOSITORY.deleteById(id);
+    }
+
 }
