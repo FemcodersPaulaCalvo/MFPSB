@@ -36,4 +36,10 @@ public class PhraseController {
         ResponsePhraseDto updatePhrase = PHRASE_SERVICE.updatePhrase(id, requestPhraseDto);
         return new ResponseEntity<>(updatePhrase, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePhrase(@PathVariable Long id){
+        PHRASE_SERVICE.deletePhraseById(id);
+        return new ResponseEntity<>("Phrase has been deleted",HttpStatus.OK);
+    }
 }
