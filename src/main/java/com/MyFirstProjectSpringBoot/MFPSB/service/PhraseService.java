@@ -4,6 +4,9 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.*;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Phrase;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.EmptyListException;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.NoIdPhraseFoundException;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.PhraseAlreadyExistException;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.PhraseRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +32,7 @@ public class PhraseService {
     public List<ResponsePhraseDto> findAllPhrases(){
         List<Phrase> phrases = PHRASE_REPOSITORY.findAll();
         if (phrases.isEmpty()){
-            throw new RuntimeException("The list is empty");
+            throw new EmptyListException();
         }
         return phrases.stream()
                 .map(ResponsePhraseDto::fromEntity)
@@ -39,7 +42,7 @@ public class PhraseService {
     //  GET PHRASE BY ID
     public ResponsePhraseDto findPhraseById(Long id){
         Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
-                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+                .orElseThrow(() -> new NoIdPhraseFoundException(id));
 
         return ResponsePhraseDto.fromEntity(isExisstingPhrase);
     }
@@ -48,7 +51,7 @@ public class PhraseService {
     public ResponsePhraseDto createPhrase(RequestPhraseDto requestPhraseDto){
         Optional<Phrase> isExisting = PHRASE_REPOSITORY.findByText(requestPhraseDto.text());
         if (isExisting.isPresent()){
-            throw new RuntimeException("This phrase exists: " + isExisting.get().getText() + " Author:" + isExisting.get().getAuthor().getName());
+            throw new PhraseAlreadyExistException(isExisting.get().getText(), isExisting.get().getAuthor().getName());
         }
 
         Phrase newPhrase = requestPhraseDto.toEntity();
@@ -69,8 +72,12 @@ public class PhraseService {
 
     //  UPDATE PHRASE
     public ResponsePhraseDto updatePhrase(Long id, RequestPhraseDto requestPhraseDto){
+        Optional<Phrase> isExisting = PHRASE_REPOSITORY.findByText(requestPhraseDto.text());
+        if (isExisting.isPresent()){
+            throw new PhraseAlreadyExistException(isExisting.get().getText(), isExisting.get().getAuthor().getName());
+        }
         Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
-                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+                .orElseThrow(() -> new NoIdPhraseFoundException(id));
 
         isExisstingPhrase.setText(requestPhraseDto.text());
 
@@ -95,7 +102,7 @@ public class PhraseService {
     //  DELETE PHRASE
     public void deletePhraseById(Long id){
         Phrase isExisstingPhrase = PHRASE_REPOSITORY.findById(id)
-                .orElseThrow(() -> new RuntimeException("This phrase not exist"));
+                .orElseThrow(() -> new NoIdPhraseFoundException(id));
 
         PHRASE_REPOSITORY.deleteById(id);
     }
