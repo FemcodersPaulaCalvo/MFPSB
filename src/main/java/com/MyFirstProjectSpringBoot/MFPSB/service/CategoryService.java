@@ -5,6 +5,7 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.CategoryIsExistingException;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CategoryService {
         Category newCategory = categoryDto.toEntity();
         Optional<Category> isExisting = CATEGORY_REPOSITORY.findByName(newCategory.getName());
         if(!isExisting.isEmpty()){
-            throw new RuntimeException("This category already exist");
+            throw new CategoryIsExistingException(newCategory.getName());
         }
         Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
         return ResponseCategoryDto.fromEntity(savedCategory);
