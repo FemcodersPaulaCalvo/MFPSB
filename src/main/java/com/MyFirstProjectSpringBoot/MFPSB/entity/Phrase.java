@@ -37,6 +37,13 @@ public class Phrase {
         this.category = category;
     }
 
+    public Phrase(Long id, String text, Author author, Category category) {
+        this.id = id;
+        this.text = text;
+        this.author = author;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
