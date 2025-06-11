@@ -1,5 +1,6 @@
 package com.MyFirstProjectSpringBoot.MFPSB.controller;
 
+import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestPhraseDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponsePhraseDto;
 import com.MyFirstProjectSpringBoot.MFPSB.service.PhraseService;
@@ -49,4 +50,11 @@ public class PhraseController {
         PHRASE_SERVICE.deletePhraseById(id);
         return new ResponseEntity<>("Phrase has been deleted",HttpStatus.OK);
     }
+
+    @GetMapping("/author")
+    public ResponseEntity<List<ResponsePhraseDto>> getPhrasesByAuthorName(@Valid @RequestBody RequestAuthorDto requestAuthorDto){
+        List<ResponsePhraseDto> phrasesByAuthor = PHRASE_SERVICE.findPhrasesByAuthorName(requestAuthorDto);
+        return new ResponseEntity<>(phrasesByAuthor, HttpStatus.OK);
+    }
+
 }
