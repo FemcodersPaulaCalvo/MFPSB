@@ -1,6 +1,7 @@
 package com.MyFirstProjectSpringBoot.MFPSB.controller;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
+import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestPhraseDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponsePhraseDto;
 import com.MyFirstProjectSpringBoot.MFPSB.service.PhraseService;
@@ -55,6 +56,12 @@ public class PhraseController {
     public ResponseEntity<List<ResponsePhraseDto>> getPhrasesByAuthorName(@Valid @RequestBody RequestAuthorDto requestAuthorDto){
         List<ResponsePhraseDto> phrasesByAuthor = PHRASE_SERVICE.findPhrasesByAuthorName(requestAuthorDto);
         return new ResponseEntity<>(phrasesByAuthor, HttpStatus.OK);
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity<List<ResponsePhraseDto>> getPhrasesByCategoryName(@Valid @RequestBody RequestCategoryDto requestCategoryDto){
+        List<ResponsePhraseDto> phrasesByCategory = PHRASE_SERVICE.findPhrasesByCategoryName(requestCategoryDto);
+        return new ResponseEntity<>(phrasesByCategory, HttpStatus.OK);
     }
 
 }
