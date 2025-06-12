@@ -67,7 +67,7 @@ MFPSB/
 - Maven installed
 - IDE (IntelliJ, VSCode, Eclipse)
 
-### Steps
+###  Steps 
 
 1. Clone or unzip the project
 2. Configure `application.properties` inside `src/main/resources` (if needed)
