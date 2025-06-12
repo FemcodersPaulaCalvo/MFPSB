@@ -26,7 +26,7 @@ public class AuthorController {
     @PostMapping
     public ResponseEntity<ResponseAuthorDto> postNewAuthor(@Valid @RequestBody RequestAuthorDto requestAuthorDto){
         ResponseAuthorDto newAuthor = AUTHOR_SERVICE.saveAuthor(requestAuthorDto);
-        return new ResponseEntity<>(newAuthor, HttpStatus.CREATED);
+        return new ResponseEntity<>(newAuthor, HttpStatus.OK);
     }
 
 }
