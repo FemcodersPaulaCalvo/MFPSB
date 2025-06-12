@@ -31,10 +31,6 @@ public class Category {
         this.name = name;
     }
 
-    public Category(String name, List<Phrase> phrases) {
-        this.name = name;
-        this.phrases = phrases;
-    }
 
     public Long getId() {
         return id;
