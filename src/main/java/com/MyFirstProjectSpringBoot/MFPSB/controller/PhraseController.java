@@ -37,7 +37,7 @@ public class PhraseController {
     @PostMapping
     public ResponseEntity<ResponsePhraseDto> postNewPhrase(@Valid @RequestBody RequestPhraseDto requestPhraseDto){
         ResponsePhraseDto newPhrase = PHRASE_SERVICE.createPhrase(requestPhraseDto);
-        return new ResponseEntity<>(newPhrase, HttpStatus.OK);
+        return new ResponseEntity<>(newPhrase, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -49,7 +49,7 @@ public class PhraseController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePhrase(@PathVariable Long id){
         PHRASE_SERVICE.deletePhraseById(id);
-        return new ResponseEntity<>("Phrase has been deleted",HttpStatus.OK);
+        return new ResponseEntity<>("Phrase has been deleted",HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/author")
