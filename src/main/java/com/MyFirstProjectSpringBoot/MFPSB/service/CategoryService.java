@@ -6,9 +6,11 @@ import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.CategoryIsExistingException;
+import com.MyFirstProjectSpringBoot.MFPSB.exceptions.EmptyListException;
 import com.MyFirstProjectSpringBoot.MFPSB.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +42,16 @@ public class CategoryService {
         }
         Category savedCategory = CATEGORY_REPOSITORY.save(newCategory);
         return ResponseCategoryDto.fromEntity(savedCategory);
+    }
+
+    //  FIND ALL
+    public List<ResponseCategoryDto> findAll(){
+        List<Category> listAllCategories = CATEGORY_REPOSITORY.findAll();
+        if (listAllCategories.isEmpty()){
+            throw new EmptyListException();
+        }
+        return listAllCategories.stream()
+                .map(ResponseCategoryDto::fromEntity)
+                .toList();
     }
 }
