@@ -96,6 +96,9 @@ http://localhost:8080
 - `POST /phrases` – Create new phrase
 - `PUT /phrases/{id}` – Update phrase
 - `DELETE /phrases/{id}` – Delete phrase
+- `GET /phrases/author` – Get all phrases by author
+- `GET /phrases/category` – Get all phrases by category
+
 
 ### 👤 Authors (`/authors`)
 
