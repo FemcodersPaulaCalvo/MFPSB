@@ -2,7 +2,6 @@ package com.MyFirstProjectSpringBoot.MFPSB.controller;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
-import com.MyFirstProjectSpringBoot.MFPSB.repository.AuthorRepository;
 import com.MyFirstProjectSpringBoot.MFPSB.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -14,11 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
-    private final AuthorRepository AUTHOR_REPOSITORY;
+
     private final AuthorService AUTHOR_SERVICE;
 
-    public AuthorController(AuthorRepository AUTHOR_REPOSITORY, AuthorService AUTHOR_SERVICE) {
-        this.AUTHOR_REPOSITORY = AUTHOR_REPOSITORY;
+    public AuthorController(AuthorService AUTHOR_SERVICE) {
         this.AUTHOR_SERVICE = AUTHOR_SERVICE;
     }
 

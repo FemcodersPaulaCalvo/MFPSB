@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
-
 @Entity
 @Table(name = "authors")
 public class Author {

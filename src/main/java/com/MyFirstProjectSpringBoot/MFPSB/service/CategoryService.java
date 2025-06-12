@@ -1,9 +1,7 @@
 package com.MyFirstProjectSpringBoot.MFPSB.service;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.RequestCategoryDto;
-import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseAuthorDto;
 import com.MyFirstProjectSpringBoot.MFPSB.dto.ResponseCategoryDto;
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.CategoryIsExistingException;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.EmptyListException;

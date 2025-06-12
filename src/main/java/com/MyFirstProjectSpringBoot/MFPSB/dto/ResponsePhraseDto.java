@@ -1,7 +1,5 @@
 package com.MyFirstProjectSpringBoot.MFPSB.dto;
 
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
 import com.MyFirstProjectSpringBoot.MFPSB.entity.Phrase;
 
 public record ResponsePhraseDto(Long id, String text, String author, String category) {

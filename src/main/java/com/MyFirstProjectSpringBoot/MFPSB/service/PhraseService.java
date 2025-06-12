@@ -1,9 +1,7 @@
 package com.MyFirstProjectSpringBoot.MFPSB.service;
 
 import com.MyFirstProjectSpringBoot.MFPSB.dto.*;
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Author;
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Category;
-import com.MyFirstProjectSpringBoot.MFPSB.entity.Phrase;
+import com.MyFirstProjectSpringBoot.MFPSB.entity.*;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.EmptyListException;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.NoIdPhraseFoundException;
 import com.MyFirstProjectSpringBoot.MFPSB.exceptions.PhraseAlreadyExistException;
